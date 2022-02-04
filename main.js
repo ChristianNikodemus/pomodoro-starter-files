@@ -11,9 +11,12 @@ let interval;
 
 // Controls main button
 const buttonSound = new Audio("src/audio/button-sound.mp3");
+
 const mainButton = document.getElementById("js-btn");
 mainButton.addEventListener("click", () => {
+  //plays button sound
   buttonSound.play();
+
   const { action } = mainButton.dataset;
   if (action === "start") {
     startTimer();
@@ -115,6 +118,9 @@ function startTimer() {
         default:
           switchMode("pomodoro");
       }
+
+      // Plays sounds depending on timer mode
+      document.querySelector(`[data-sound="${timer.mode}"]`).play();
 
       startTimer();
     }
