@@ -22,9 +22,9 @@ html {
 }
 
 :root {
-  --pomodoro: hsl(223, 25%, 40%);
-  --shortBreak: hsl(48, 23%, 40%);
-  --longBreak: hsl(105, 16%, 40%);
+  --pomodoro: #d9b504;
+  --shortBreak: #a0dbf2;
+  --longBreak: #3f8ebf;
 }
 
 body {
