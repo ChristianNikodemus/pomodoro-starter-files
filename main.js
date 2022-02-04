@@ -6,6 +6,8 @@ const timer = {
   longBreakInterval: 4,
 };
 
+let interval;
+
 // Adds functionality to user clicks for the mode buttons
 const modeButtons = document.querySelector("#js-mode-buttons");
 modeButtons.addEventListener("click", handleMode);
@@ -34,6 +36,21 @@ function switchMode(mode) {
   document.body.style.backgroundColor = `var(--${mode})`;
 
   updateClock();
+}
+
+function startTimer() {
+  let { total } = timer.remainingTime;
+  const endTime = Date.parse(new Date()) + total * 1000;
+
+  interval = setInterval(function () {
+    timer.remainingTime = getRemainingTime(endTime);
+    updateClock();
+
+    total = timer.remainingTime.total;
+    if (total <= 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
 }
 
 // This funciton updates the clock with the time
