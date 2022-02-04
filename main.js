@@ -14,8 +14,19 @@ mainButton.addEventListener("click", () => {
   const { action } = mainButton.dataset;
   if (action === "start") {
     startTimer();
+  } else {
+    stopTimer();
   }
 });
+
+// Stops the timer
+function stopTimer() {
+  clearInterval(interval);
+
+  mainButton.dataset.action = "start";
+  mainButton.textContent = "start";
+  mainButton.classList.remove("active");
+}
 
 // Adds functionality to user clicks for the mode buttons
 const modeButtons = document.querySelector("#js-mode-buttons");
@@ -27,6 +38,7 @@ function handleMode(event) {
   if (!mode) return;
 
   switchMode(mode);
+  stopTimer();
 }
 
 // The switchMode function sets a property to mode (longbreak, pomodoro, etc), and also remaining time on the timer
