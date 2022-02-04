@@ -91,7 +91,10 @@ function updateClock() {
 
   const min = document.getElementById("js-minutes");
   const sec = document.getElementById("js-seconds");
-
   min.textContent = minutes;
-  min.textContent = seconds;
+  sec.textContent = seconds;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  switchMode("pomodoro");
+});
