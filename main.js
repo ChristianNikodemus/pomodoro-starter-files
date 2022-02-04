@@ -10,8 +10,10 @@ const timer = {
 let interval;
 
 // Controls main button
+const buttonSound = new Audio("src/audio/button-sound.mp3");
 const mainButton = document.getElementById("js-btn");
 mainButton.addEventListener("click", () => {
+  buttonSound.play();
   const { action } = mainButton.dataset;
   if (action === "start") {
     startTimer();
