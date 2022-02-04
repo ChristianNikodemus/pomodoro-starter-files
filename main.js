@@ -57,6 +57,11 @@ function switchMode(mode) {
   document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
   document.body.style.backgroundColor = `var(--${mode})`;
 
+  // Adds the max attribute for the progress bar
+  document
+    .getElementById("js-progress")
+    .setAttribute("max", timer.remainingTime.total);
+
   updateClock();
 }
 
@@ -81,6 +86,7 @@ function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
 
+  // Updates the value of sessions
   if (timer.mode === "pomodoro") timer.sessions++;
 
   mainButton.dataset.action = "stop";
@@ -95,6 +101,7 @@ function startTimer() {
     if (total <= 0) {
       clearInterval(interval);
 
+      // Switches the mode to the next automatically
       switch (timer.mode) {
         case "pomodoro":
           if (timer.sessions % timer.longBreakInterval === 0) {
@@ -122,6 +129,10 @@ function updateClock() {
   const sec = document.getElementById("js-seconds");
   min.textContent = minutes;
   sec.textContent = seconds;
+
+  // Updates the progress bar value with the time remaining
+  const progress = document.getElementById("js-progress");
+  progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
