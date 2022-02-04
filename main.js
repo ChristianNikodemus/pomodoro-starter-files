@@ -119,6 +119,15 @@ function startTimer() {
           switchMode("pomodoro");
       }
 
+      // Displays notification when switching to different session
+      if (Notification.permission === "granted") {
+        const text =
+          timer.mode === "pomodoro"
+            ? "Time to get back at it!"
+            : "Take a break!";
+        new Notification(text);
+      }
+
       // Plays sounds depending on timer mode
       document.querySelector(`[data-sound="${timer.mode}"]`).play();
 
@@ -148,5 +157,25 @@ function updateClock() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Let's check if the browser supports notifications
+  if ("Notification" in window) {
+    // If notification permissions have neither been granted or denied
+    if (
+      Notification.permission !== "granted" &&
+      Notification.permission !== "denied"
+    ) {
+      // ask the user for permission
+      Notification.requestPermission().then(function (permission) {
+        // If permission is granted
+        if (permission === "granted") {
+          // Create a new notification
+          new Notification(
+            "Awesome! You will be notified at the start of each session"
+          );
+        }
+      });
+    }
+  }
+
   switchMode("pomodoro");
 });
