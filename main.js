@@ -130,6 +130,10 @@ function updateClock() {
   min.textContent = minutes;
   sec.textContent = seconds;
 
+  // Updates the text depending on the mode
+  const text = timer.mode === "pomodoro" ? "Keep focusing!" : "Take a break!";
+  document.title = `${minutes}:${seconds} — ${text}`;
+
   // Updates the progress bar value with the time remaining
   const progress = document.getElementById("js-progress");
   progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
