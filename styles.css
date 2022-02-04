@@ -125,4 +125,11 @@ button:active {
   .clock {
     font-size: 8rem;
   }
+
+  .mode-button {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    align-items: center;
+  }
 }
