@@ -8,6 +8,15 @@ const timer = {
 
 let interval;
 
+// Starts the timer
+const mainButton = document.getElementById("js-btn");
+mainButton.addEventListener("click", () => {
+  const { action } = mainButton.dataset;
+  if (action === "start") {
+    startTimer();
+  }
+});
+
 // Adds functionality to user clicks for the mode buttons
 const modeButtons = document.querySelector("#js-mode-buttons");
 modeButtons.addEventListener("click", handleMode);
