@@ -38,6 +38,23 @@ function switchMode(mode) {
   updateClock();
 }
 
+// Gets the remaining time for timer
+function getRemainingTime(endTime) {
+  const currentTime = Date.parse(new Date());
+  const difference = endTime - currentTime;
+
+  const total = Number.parseInt(difference / 1000, 10);
+  const minutes = Number.parseInt((total / 60) % 60, 10);
+  const seconds = Number.parseInt(total % 60, 10);
+
+  return {
+    total,
+    minutes,
+    seconds,
+  };
+}
+
+// Starts timer
 function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
